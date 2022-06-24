@@ -13,7 +13,7 @@
     "keywords": [],
     "license": "ISC",
     "devDependencies": {
-        "nodemon": "^2.0.16"
+        "nodemon": "^2.0.18"
     },
     "dependencies": {
         "jimp": "^0.16.1",
