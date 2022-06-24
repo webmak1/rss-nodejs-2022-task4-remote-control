@@ -1,3 +1,5 @@
+# RSSchool NodeJS websocket task
+
 // Пакеты, которые пришлось инсталлировать, перед инсталляцией robotjs в ubuntu linux
 
 <br/>
