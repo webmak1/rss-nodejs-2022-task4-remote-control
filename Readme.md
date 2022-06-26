@@ -33,7 +33,11 @@ $ npm run start dev
 http://localhost:3000/
 ```
 
-###
+<br/>
+
+### Запуск примеров
+
+<br/>
 
 https://jspaint.app
 
