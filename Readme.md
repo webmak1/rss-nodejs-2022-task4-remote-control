@@ -42,6 +42,7 @@ p - установить значения
 s - прямоугольник
 r - квадрат
 c - круг
+CTRL + P - скриншот
 ```
 
 <br/>
@@ -49,3 +50,5 @@ c - круг
 ### Полезные ссылки
 
 https://www.webtips.dev/drawing-with-robot-js
+
+https://codebeautify.org/base64-to-image-converter
