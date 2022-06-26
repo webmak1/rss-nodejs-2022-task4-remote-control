@@ -34,6 +34,7 @@ export const printScreen = async () => {
   return base64;
 };
 
+// @ts-ignore
 const swapRedAndBlueChannel = (bmp) => {
   for (let i = 0; i < bmp.width * bmp.height * 4; i += 4) {
     // swap red and blue channel

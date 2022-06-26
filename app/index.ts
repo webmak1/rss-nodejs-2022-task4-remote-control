@@ -1,5 +1,5 @@
 import robot from 'robotjs';
-import { WebSocketServer } from 'ws';
+import { createWebSocketStream, WebSocketServer } from 'ws';
 import { drawCircle } from './drawCircle';
 import { drawRectangle } from './drawRectangle';
 import { printScreen } from './printScreen';
@@ -11,10 +11,12 @@ const wss = new WebSocketServer({
 });
 
 wss.on('connection', (ws) => {
-  ws.on('message', (data) => {
-    console.log('received: %s', data);
+  const dulpex = createWebSocketStream(ws, { encoding: 'utf8' });
 
-    const [command, ...args] = data.toString().split(' ');
+  dulpex.on('data', (chunk) => {
+    console.log('received: %s', chunk);
+
+    const [command, ...args] = chunk.toString().split(' ');
 
     // @ts-ignore
     const inputParam1 = +args[0];
@@ -34,29 +36,33 @@ wss.on('connection', (ws) => {
       case 'mouse_up': {
         console.log('HOORAY mouse_up');
         robot.moveMouse(x, y - inputParam1);
+        ws.send('mouse_up');
         break;
       }
       case 'mouse_down': {
         console.log('HOORAY mouse_down');
         robot.moveMouse(x, y + inputParam1);
+        ws.send('mouse_down');
         break;
       }
       case 'mouse_right': {
         console.log('HOORAY mouse_right');
         robot.moveMouse(x + inputParam1, y);
+        ws.send('mouse_right');
         break;
       }
       case 'mouse_left': {
         console.log('HOORAY mouse_left');
         robot.moveMouse(x - inputParam1, y);
+        ws.send('mouse_left');
         break;
       }
       case 'draw_circle': {
         console.log('HOORAY draw_circle');
-        ws.send('draw_circle');
         robot.setMouseDelay(5);
         const circle = { x, y, radius: inputParam1 };
         drawCircle(circle);
+        ws.send('draw_circle');
         break;
       }
       case 'draw_rectangle': {
