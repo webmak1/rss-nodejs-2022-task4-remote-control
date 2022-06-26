@@ -4,8 +4,8 @@
     "noImplicitAny": true,
     "target": "es2020",
     "module": "commonjs",
-    "baseUrl": "./src",
-    "rootDir": "./src",
+    "baseUrl": "./",
+    "rootDir": "./",
     "outDir": "./build",
     "allowJs": true,
     "moduleResolution": "node",
@@ -26,5 +26,5 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./test/**/*.ts"]
+  "include": ["./**/*.ts", "./test/**/*.ts"]
 }

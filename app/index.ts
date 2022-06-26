@@ -100,12 +100,12 @@ wss.on('connection', (ws) => {
 
   // duplex.write('something');
 
-  ws.on('close', () => {
+  duplex.on('close', () => {
     console.log('closews');
     duplex.write('close');
   });
 
-  ws.on('error', () => {
+  duplex.on('error', () => {
     console.log('error');
   });
 });
