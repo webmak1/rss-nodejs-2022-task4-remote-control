@@ -11,9 +11,9 @@ const wss = new WebSocketServer({
 });
 
 wss.on('connection', (ws) => {
-  const dulpex = createWebSocketStream(ws, { encoding: 'utf8' });
+  const duplex = createWebSocketStream(ws, { encoding: 'utf8' });
 
-  dulpex.on('data', (chunk) => {
+  duplex.on('data', (chunk) => {
     console.log('received: %s', chunk);
 
     const [command, ...args] = chunk.toString().split(' ');
