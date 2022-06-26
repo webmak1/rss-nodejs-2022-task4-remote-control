@@ -9,38 +9,19 @@ const wss = new WebSocketServer({
 });
 
 const drawCircle = (circle) => {
-  // const mousePos = robot.getMousePos();
-
-  // console.log('circle');
-  // console.log(circle);
-
   const currentPos = circle;
 
-  console.log('currentPos');
-  console.log(currentPos);
+  robot.moveMouse(currentPos.x + currentPos.radius, circle.y);
+  robot.mouseToggle('down');
 
   for (let i = 0; i <= Math.PI * 2; i += 0.01) {
-    console.log('currentPos.x');
-    console.log(currentPos.x);
-
-    console.log('currentPos.y');
-    console.log(currentPos.y);
-
-    console.log('currentPos.radius');
-    console.log(currentPos.radius);
-
-    // Convert polar coordinates to cartesian
     const x = currentPos.x + currentPos.radius * Math.cos(i);
     const y = currentPos.y + currentPos.radius * Math.sin(i);
 
-    console.log('x');
-    console.log(x);
-
-    console.log('y');
-    console.log(y);
-
     robot.dragMouse(x, y);
   }
+
+  robot.mouseToggle('up');
 };
 
 // wss.on('connection', (ws, { encoding: 'utf-8', decodeStrings: false }) => {
@@ -89,16 +70,8 @@ wss.on('connection', (ws) => {
       case 'draw_circle': {
         console.log('HOORAY draw_circle');
         robot.setMouseDelay(5);
-
         const circle = { x, y, radius: inputParam1 };
-
-        // robot.moveMouse(circle.x, circle.y);
-        robot.mouseToggle('down');
-
         drawCircle(circle);
-
-        robot.mouseToggle('up');
-
         break;
       }
 
