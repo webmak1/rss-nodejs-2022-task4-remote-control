@@ -33,4 +33,19 @@ $ npm run start dev
 http://localhost:3000/
 ```
 
-https://jspaint.app/#local:9c28110ef49f6
+###
+
+https://jspaint.app
+
+```
+p - установить значения
+s - прямоугольник
+r - квадрат
+c - круг
+```
+
+<br/>
+
+### Полезные ссылки
+
+https://www.webtips.dev/drawing-with-robot-js
