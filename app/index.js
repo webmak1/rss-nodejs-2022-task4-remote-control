@@ -16,10 +16,11 @@ wss.on('connection', (ws) => {
     const [command, ...args] = data.toString().split(' ');
 
     console.log('Args ' + args[0]);
-    const mouseOffset = +args[0];
+    const inputParam1 = +args[0];
+    const inputParam2 = +args[1];
 
     const { x, y } = robot.getMousePos();
-    ws.send(`mouse_position ${x},${y}`);
+    robot.setMouseDelay(100);
 
     console.log(`x: ${x}`);
     console.log(`y: ${y}`);
@@ -32,38 +33,73 @@ wss.on('connection', (ws) => {
     switch (command) {
       case 'mouse_up': {
         console.log('HOORAY mouse_up');
-        robot.moveMouse(x, y - mouseOffset);
+        robot.moveMouse(x, y - inputParam1);
         break;
       }
       case 'mouse_down': {
         console.log('HOORAY mouse_down');
-        robot.moveMouse(x, y + mouseOffset);
+        robot.moveMouse(x, y + inputParam1);
         break;
       }
       case 'mouse_right': {
         console.log('HOORAY mouse_right');
-        robot.moveMouse(x + mouseOffset, y);
+        robot.moveMouse(x + inputParam1, y);
         break;
       }
       case 'mouse_left': {
         console.log('HOORAY mouse_left');
-        robot.moveMouse(x - mouseOffset, y);
+        robot.moveMouse(x - inputParam1, y);
         break;
       }
       case 'draw_circle': {
         console.log('HOORAY draw_circle');
         break;
       }
+
       case 'draw_rectangle': {
         console.log('HOORAY draw_rectangle');
+
+        let mouseX = x;
+        let mouseY = y;
+
+        console.log('inputParam2 ');
+        console.log(inputParam2);
+
+        robot.mouseToggle('down');
+        mouseX = mouseX + inputParam2;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseY = mouseY + inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseX = mouseX - inputParam2;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseY = mouseY - inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        robot.mouseToggle('up');
         break;
       }
-      case 'draw_rectangle': {
-        console.log('HOORAY draw_rectangle');
+
+      case 'draw_square': {
+        console.log('HOORAY draw_square');
+
+        let mouseX = x;
+        let mouseY = y;
+
+        robot.mouseToggle('down');
+        mouseX = mouseX + inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseY = mouseY + inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseX = mouseX - inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        mouseY = mouseY - inputParam1;
+        robot.moveMouseSmooth(mouseX, mouseY);
+        robot.mouseToggle('up');
         break;
       }
+
       case 'mouse_position': {
         console.log('mouse_position');
+        ws.send(`mouse_position ${x},${y}`);
         break;
       }
 
