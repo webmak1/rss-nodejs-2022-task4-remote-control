@@ -1,5 +1,13 @@
 # RSSchool NodeJS websocket task
 
+<br/>
+
+### [assignment](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/assignment.md)
+
+### [score](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/score.md)
+
+<br/>
+
 // Пакеты, которые пришлось инсталлировать, перед инсталляцией robotjs в ubuntu linux
 
 <br/>
@@ -24,3 +32,5 @@ $ npm run start dev
 ```
 http://localhost:3000/
 ```
+
+https://jspaint.app/#local:9c28110ef49f6
